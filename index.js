@@ -5,36 +5,104 @@ const fs = require('fs');
 
 // Quesitons for user
 
-const questions = [
+// Choose employee
+
+const employeeType = [
     {
         type: 'list',
         message: 'What type of employee are you entering?',
-        choices: ["Engineer", "Intern", "Manager"],
-        name: 'employee',
+        choices: ["Intern", "Engineer", "Manager"],
+        name: 'employeeType',
     },
-    {
-        type: 'input',
-        message: 'Employee ID?',
-        name: 'employeeID',
-    },
-    {
-        type: 'input',
-        message: 'Employee email?',
-        name: 'employeeEmail',
-    },
-    {
-        type: 'input',
-        message: 'Employee office number?',
-        name: 'employeeOfficeNumber'
-    },
-    {
-        type: 'input',
-        message: 'Employee GitHub username?',
-        name: 'employeeGitHubUsername'
-    },
-    {
-        type: 'input',
-        message: 'What school did this employee go to for coding education?',
-        name: 'employeeEducation'
-    },
-]
+];
+
+const questions = {
+
+    Intern: [
+
+        {
+            type: "input",
+            name: "name",
+            message: "What is the employee's name?",
+        },
+        {
+            type: 'input',
+            name: 'employeeID',
+            message: 'Employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Employee email?',
+        },
+        {
+            type: 'input',
+            name: 'employeeEducation',
+            message: 'What school is this employee attending for coding education?',
+        },
+        {
+            type: "list",
+            name: "newEmployee",
+            message: "Do you want to add another employee?",
+            choices: ["Yes", "No"]
+        }
+    ],
+
+    Engineer: [
+        {
+            type: "input",
+            name: "name",
+            message: "What is the engineer's name?",
+        },
+        {
+            type: 'input',
+            name: 'employeeID',
+            message: 'Employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Employee email?',
+        },
+        {
+            type: 'input',
+            name: 'employeeGitHubUsername',
+            message: 'Employee GitHub username?',
+        },
+        {
+            type: "list",
+            name: "newEmployee",
+            message: "Do you want to add another employee?",
+            choices: ["Yes", "No"]
+        }
+    ],
+
+    Manager: [
+        {
+            type: "input",
+            name: "name",
+            message: "What is the manager's name?",
+        },
+        {
+            type: 'input',
+            name: 'employeeID',
+            message: 'Employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Employee email?',
+        },
+        {
+            type: 'input',
+            name: 'employeeOfficeNumber',
+            message: 'Employee office number?',
+        },
+        {
+            type: "list",
+            name: "newEmployee",
+            message: "Do you want to add another employee?",
+            choices: ["Yes", "No"]
+        }
+    ]
+};
