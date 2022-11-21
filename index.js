@@ -3,6 +3,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// Empty space variable to store employee data from user input
+
+let employees = [];
+
 // Quesitons for user
 
 // Choose employee
@@ -15,6 +19,8 @@ const employeeType = [
         name: 'employeeType',
     },
 ];
+
+// Quesitons to build employee card
 
 const questions = {
 
@@ -106,3 +112,65 @@ const questions = {
         }
     ]
 };
+
+function newEmployee() {
+    inquirer.prompt(employeeType)
+    .then(typeOfEmployee => {
+        if (typeOfEmployee.employeeType === "Intern") {
+            inquirer.prompt(quesions.Intern)
+            .then(internInfo => {
+                const intern = new Intern
+                (
+                    internInfo.name,
+                    internInfo.employeeID,
+                    internInfo.employeeEmail,
+                    internInfo.employeeEducation,
+                );
+                employees.push(Intern);
+                if (internInfo.newEmployee === "Yes") {
+                    newEmployee();
+                } else {
+                    renderHTMLDoc();
+                }
+            });
+        } else if (typeOfEmployee.employeeType === "Engineer") {
+            inquirer.prompt(quesions.Engineer)
+            .then(engineerInfo => {
+                const engineer = new Engineer
+                (
+                    engineerInfo.name,
+                    engineerInfo.employeeID,
+                    engineerInfo.employeeEmail,
+                    engineerInfo.employeeGitHubUsername,
+                );
+                employees.push(Engineer);
+                if (engineerInfo.newEmployee === "Yes") {
+                    newEmployee();
+                } else {
+                    renderHTMLDoc();
+                };
+            });
+        } else if (typeOfEmployee.employeeType === "Manager") {
+            inquirer.prompt(quesions.manager)
+            .then(managerInfo => {
+                const manageer = new Manager
+                (
+                    managerInfo.name,
+                    managerInfo.employeeID,
+                    managerInfo.employeeEmail,
+                    managerInfo.employeeOfficeNumber,
+                );
+                employees.push(Engineer);
+                if (engineerInfo.newEmployee === "Yes") {
+                    newEmployee();
+                } else {
+                    renderHTMLDoc();
+                };
+            });
+        };
+    });
+};
+
+// function to be ran when page is invoked by node index.js
+
+newEmployee();
