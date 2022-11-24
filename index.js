@@ -1,7 +1,7 @@
 // requireing packages
 
-const inquirer = require('inquirer');
-const fs = require('fs');
+const inquirer = require("inquirer");
+const fs = require("fs");
 
 // Empty space variable to store employee data from user input
 
