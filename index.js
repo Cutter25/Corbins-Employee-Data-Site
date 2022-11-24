@@ -2,6 +2,14 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Employee = require("./lib/employee")
+
+// generate package requirement
+
+const generateHTML = require("./src/renderHTMLdoc");
 
 // Empty space variable to store employee data from user input
 
