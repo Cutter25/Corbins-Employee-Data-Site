@@ -50,3 +50,4 @@ const generateIntern = function (intern) {
 </div>
     `
 };
+
