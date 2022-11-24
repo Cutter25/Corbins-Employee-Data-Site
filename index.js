@@ -121,6 +121,17 @@ const questions = {
     ]
 };
 
+const writeFile = data =>{
+    fs.renderHTMLDoc("./dist/index.html", data, err=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Your employee data site has been generated successfully!")
+        }
+    })
+};
+
 function newEmployee() {
     inquirer.prompt(employeeType)
     .then(typeOfEmployee => {
