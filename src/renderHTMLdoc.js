@@ -45,7 +45,7 @@ const generateIntern = function (intern) {
     `
 };
 
-generateHTML = (data) => {
+// generateHTML = (data) => {
 
     // array for cards 
     pageArray = []; 
@@ -83,8 +83,6 @@ generateHTML = (data) => {
     // return to generated page
     const generateTeam = generateHTML(employeeCards); 
     return generateTeam;
-
-}
 
 // generate the HTML 
 const generateHTML = function (employeeCards) {   

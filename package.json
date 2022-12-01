@@ -1,5 +1,7 @@
 {
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "inquirer": "^9.1.4"
+    "inquirer": "^6.3.1"
   }
 }

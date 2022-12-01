@@ -9,7 +9,7 @@ const Employee = require("./lib/employee");
 
 // generate package requirement
 
-const generateHTML = require("./src/renderHTMLdoc");
+// const generateHTML = require("./src/renderHTMLdoc");
 
 // Empty space variable to store employee data from user input
 
@@ -30,72 +30,12 @@ const employeeType = [
 
 // Quesitons to build employee card
 
-const questions = {
-
-    Intern: [
+const questions = [
 
         {
             type: "input",
             name: "name",
-            message: "What is the employee's name?",
-        },
-        {
-            type: 'input',
-            name: 'employeeID',
-            message: 'Employee ID?',
-        },
-        {
-            type: 'input',
-            name: 'employeeEmail',
-            message: 'Employee email?',
-        },
-        {
-            type: 'input',
-            name: 'employeeEducation',
-            message: 'What school is this employee attending for coding education?',
-        },
-        {
-            type: "list",
-            name: "newEmployee",
-            message: "Do you want to add another employee?",
-            choices: ["Yes", "No"]
-        }
-    ],
-
-    Engineer: [
-        {
-            type: "input",
-            name: "name",
-            message: "What is the engineer's name?",
-        },
-        {
-            type: 'input',
-            name: 'employeeID',
-            message: 'Employee ID?',
-        },
-        {
-            type: 'input',
-            name: 'employeeEmail',
-            message: 'Employee email?',
-        },
-        {
-            type: 'input',
-            name: 'employeeGitHubUsername',
-            message: 'Employee GitHub username?',
-        },
-        {
-            type: "list",
-            name: "newEmployee",
-            message: "Do you want to add another employee?",
-            choices: ["Yes", "No"]
-        }
-    ],
-
-    Manager: [
-        {
-            type: "input",
-            name: "name",
-            message: "What is the manager's name?",
+            message: "What is the team member's name?",
         },
         {
             type: 'input',
@@ -113,13 +53,22 @@ const questions = {
             message: 'Employee office number?',
         },
         {
+            type: 'input',
+            name: 'employeeEducation',
+            message: 'What school is this employee attending for coding education?',
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Employee email?',
+        },
+        {
             type: "list",
             name: "newEmployee",
             message: "Do you want to add another employee?",
             choices: ["Yes", "No"]
         }
-    ]
-};
+]
 
 const writeFile = data =>{
     fs.renderHTMLDoc("./dist/index.html", data, err=>{
@@ -136,7 +85,7 @@ function newEmployee() {
     inquirer.prompt(employeeType)
     .then(typeOfEmployee => {
         if (typeOfEmployee.employeeType === "Intern") {
-            inquirer.prompt(quesions.Intern)
+            inquirer.prompt(quesions)
             .then(internInfo => {
                 const intern = new Intern
                 (
@@ -153,7 +102,7 @@ function newEmployee() {
                 }
             });
         } else if (typeOfEmployee.employeeType === "Engineer") {
-            inquirer.prompt(quesions.Engineer)
+            inquirer.prompt(quesions)
             .then(engineerInfo => {
                 const engineer = new Engineer
                 (
@@ -170,7 +119,7 @@ function newEmployee() {
                 };
             });
         } else if (typeOfEmployee.employeeType === "Manager") {
-            inquirer.prompt(quesions.manager)
+            inquirer.prompt(quesions)
             .then(managerInfo => {
                 const manageer = new Manager
                 (
@@ -179,8 +128,8 @@ function newEmployee() {
                     managerInfo.employeeEmail,
                     managerInfo.employeeOfficeNumber,
                 );
-                employees.push(Engineer);
-                if (engineerInfo.newEmployee === "Yes") {
+                employees.push(Manager);
+                if (managerInfo.newEmployee === "Yes") {
                     newEmployee();
                 } else {
                     renderHTMLDoc();
