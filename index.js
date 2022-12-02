@@ -127,8 +127,8 @@ function internQuestions() {
           
 // function to create HTML file
 
-function buildTeam(data) {
-    fs.writeFile("./dist/index.html", data, err)
+function buildTeam() {
+    fs.writeFileSync("./dist/index.html", renderHTMLdoc(employees), err)
         if(err){
             console.log(err)
         } else {
