@@ -2,10 +2,9 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Manager = require("./lib/manager");
-const Engineer = require("./lib/engineer");
-const Intern = require("./lib/intern");
-const Employee = require("./lib/employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const renderHTMLdoc = require("./src/renderHTMLdoc");
 
 // Empty space variable to store employee data from user input
@@ -37,81 +36,98 @@ function managerQuestions() {
                 name: 'officeNumber',
             },
         ])
+    
     .then (function managerAnswers () {
         const {name, ID, email, officeNumber} = managerAnswers;
         const newManager = new Manager (name, ID, email, officeNumber);
         employees.push(newManager);
+        employeeQuestions()
     })
-    .then (function employeeQuestions () {
+}
+    function employeeQuestions () {
+    // .then (function employeeQuestions () {
     inquirer.prompt([
             {
                 type:'list',
                 name:'role',
-                choices:['Engineer', 'Intern']
+                message: 'What kind of employee will you add?',
+                choices:['Engineer', 'Intern', 'Build Team']
             },
-            {
-                type: 'input',
-                message: 'What is the employees name?',
-                name: 'name',
-            },
-            {
-                type: 'input',
-                message: 'What is the employees ID?',
-                name: 'ID',
-            },
-            {
-                type: 'input',
-                message: 'What is the employees email?',
-                name: 'email',
-            },
-            {
-                type:'input',
-                name:'gitHub',
-                when: (input) => input.role === 'Engineer',
-                message:'What is the Github username of the engineer?',
-            },
-            {
-                type:'input',
-                name:'education',
-                when: (input) => input.role === 'Intern',
-                message:'What school did this employee attend?',
-            },
-            {
-                type: 'list',
-                name:'newEmployee',
-                message:'Would you like to add another employee to the team?',
-                choices: ['Yes', 'No'],
-            },
-        ]) 
-        .then (function employeeAnswers() {
-            let {name, ID, email, role, gitHub, education, newEmployee} = employeeAnswers;
-            let Employee;
-            
-            // data will be passed through constructor function
-
-            if (role === 'Engineer'){
-                Employee = new Engineer (name, ID, email, gitHub);
-            }
-
-            if (role === 'Intern'){
-                Employee = new Intern (name, ID, email, education);
-            }
-
-            if (newEmployee === 'Yes') {  
-             //   employeeQuestions ()
-             console.log("Hello World!")
-            } else {
-                return employees
-            }
-
-            employees.push(Employee)
-        })
+    ]) .then ((userChoice) => {
+        switch (userChoice.role) {
+            case 'Engineer':
+                engineerQuestions()
+                break;
+            case 'Intern': 
+                internQuestions()
+                break;
+            default:
+                buildTeam()
+        }
     })
-};    
+}
 
+function engineerQuestions() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the employees name?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is the employees ID?',
+            name: 'ID',
+        },
+        {
+            type: 'input',
+            message: 'What is the employees email?',
+            name: 'email',
+        },
+        {
+            type:'input',
+            name:'gitHub',
+            message:'What is the Github username of the engineer?',
+        },
+    ]) .then((engineerAnswers) => {
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.ID, engineerAnswers.email, engineerAnswers.gitHub)
+        employees.push(engineer)
+        employeeQuestions()
+    })
+} 
+
+function internQuestions() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the employees name?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is the employees ID?',
+            name: 'ID',
+        },
+        {
+            type: 'input',
+            message: 'What is the employees email?',
+            name: 'email',
+        },
+        {
+            type:'input',
+            name:'education',
+            message:'What school did this employee attend?',
+        },
+    ]) .then((internAnswers) => {
+        const intern = new Intern(internAnswers.name, internAnswers.ID, internAnswers.email, internAnswers.education)
+        employees.push(intern)
+        employeeQuestions()
+    })
+} 
+          
 // function to create HTML file
 
-function writeFile(data) {
+function buildTeam(data) {
     fs.writeFile("./dist/index.html", data, err)
         if(err){
             console.log(err)
