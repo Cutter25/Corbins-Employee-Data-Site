@@ -1,12 +1,42 @@
 function renderTeam(team) {
-    const createManager = manager => {
-        return ``
+    const createManager = Manager => {
+        return `
+        <div class="employee-card">
+            <div id="card-head">${Manager.name} Team Manager </div>
+            <div id="card-body">
+                <ul id="card-info-list">
+                    <li> ID: ${Manager.ID}</li>
+                    <li> Email: ${Manager.email}</li>
+                    <li> Office#: ${Manager.officeNumber}</li>
+                </ul>
+            </div>
+        </div>`
     }
     const createEngineer = Engineer => {
-        return ``
+        return ` 
+        <div class="employee-card">
+            <div id="card-head">${Engineer.name} Engineer </div>
+            <div id="card-body">
+                <ul id="card-info-list">
+                    <li> ID: ${Engineer.ID}</li>
+                    <li> Email: ${Engineer.email}</li>
+                    <li> GitHub: ${Engineer.gitHub}</li>
+                </ul>
+            </div>
+        </div>`
     }
     const createIntern = Intern => {
-        return ``
+        return ` 
+        <div class="employee-card">
+            <div id="card-head">${Intern.name} Intern </div>
+            <div id="card-body">
+                <ul id="card-info-list">
+                    <li> ID: ${Intern.ID}</li>
+                    <li> Email: ${Intern.email}</li>
+                    <li> School: ${Intern.education}</li>
+                </ul>
+            </div>
+        </div>`
     }
     const sort = []
     sort.push(team.filter(employee => employee.getRole() === "Manager")
@@ -30,7 +60,10 @@ module.exports = team => {
         <title>Document</title>
     </head>
     <body>
+        <header class="header"> My Team </header>
+        <main>
         ${renderTeam(team)}
+        </main>
     </body>
     </html>`
 }

@@ -37,15 +37,14 @@ function managerQuestions() {
             },
         ])
     
-    .then (function managerAnswers () {
-        const {name, ID, email, officeNumber} = managerAnswers;
-        const newManager = new Manager (name, ID, email, officeNumber);
-        employees.push(newManager);
-        employeeQuestions()
+        .then((managerAnswers) => {
+            const manager = new Manager(managerAnswers.name, managerAnswers.ID, managerAnswers.email, managerAnswers.officeNumber)
+            employees.push(manager)
+            employeeQuestions()
     })
-}
+};
+
     function employeeQuestions () {
-    // .then (function employeeQuestions () {
     inquirer.prompt([
             {
                 type:'list',
@@ -128,12 +127,8 @@ function internQuestions() {
 // function to create HTML file
 
 function buildTeam() {
-    fs.writeFileSync("./dist/index.html", renderHTMLdoc(employees), err)
-        if(err){
-            console.log(err)
-        } else {
-            console.log("Employee data site has been generated!")
-        }
+    fs.writeFileSync("./dist/index.html", renderHTMLdoc(employees))
+    console.log("Employee data site has been generated!")
 };
 
 
