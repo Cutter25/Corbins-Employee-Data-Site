@@ -1,4 +1,6 @@
 # Corbins-employee-data-site
-Update ReadMe!
+Hello User! I was tasked with creating an application that can intake user input and produce a document using HTML, CSS, and JS.
 
-current status: inquirer is unable to work. making me very angry! >:(
+Here is a link to the demonstration video! Enjoy!
+
+
