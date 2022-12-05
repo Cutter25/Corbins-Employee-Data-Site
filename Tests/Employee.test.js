@@ -1,10 +1,7 @@
 const Employee = require("../lib/Employee");
-const Employee = require("./lib/employee");
 
-test('employee has name, ID, and an email', () => {
-    const Employee = new Employee('Corbin', 2, 'email@email.com');
+test('gets role of the employee', () => {
+    const employee = new Employee('Corbin', 1, 'fakeemail@gmail.com');
 
-    expect(Employee.name).toEqual('Corbin');
-    expect(Employee.ID).toEqual(2);
-    expect(Employee.email).toEqual('email@email.com');
-});
+    expect(employee.getRole()).toEqual("Employee");
+}); 

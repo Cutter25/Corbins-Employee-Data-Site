@@ -1,10 +1,7 @@
-const Engineer = require("../lib/engineer");
-const Engineer = require("./lib/engineer");
+const Engineer = require("../lib/Engineer");
 
-test('employee has name, ID, and an email', () => {
-    const Engineer = new Engineer('Corbin', 3, 'email@email.com');
+test('gets role of the Engineer', () => {
+    const engineer = new Engineer('Corbin', 1, 'fakeemail@gmail.com');
 
-    expect(Employee.name).toEqual('Corbin');
-    expect(Employee.ID).toEqual(3);
-    expect(Employee.email).toEqual('email@email.com');
-});
+    expect(engineer.getRole()).toEqual("Engineer");
+}); 
